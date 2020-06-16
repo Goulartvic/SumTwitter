@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Sum Twitter</string>
+    <string name="app_name">SumTwitter</string>
+    <string name="app_description">Tweet the world out</string>
 
     <string name="hello_list_fragment">Hello List Fragment</string>
     <string name="hello_map_fragment">Hello Map Fragment</string>
     <string name="list_label">List</string>
     <string name="map_label">Map</string>
+    <string name="twitter_sign_in">Sign in with Twitter</string>
 </resources>
