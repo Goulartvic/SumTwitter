@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "19002288066",
+    "firebase_url": "https://sum-twitter.firebaseio.com",
+    "project_id": "sum-twitter",
+    "storage_bucket": "sum-twitter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19002288066:android:592c5d036b18d5bce8585b",
+        "android_client_info": {
+          "package_name": "com.example.sumtwitter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19002288066-oumi977clht28b224f7ku30pkqkmmgcc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sumtwitter",
+            "certificate_hash": "2c9ad821f2ad62a3a3e3cc6c49a0fec2abebf146"
+          }
+        },
+        {
+          "client_id": "19002288066-o119dc5bf552ge2cm0vdk56t4tki4dur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcn5HWJc580E0qT6ID8zb86Cf994M4_XU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19002288066-o119dc5bf552ge2cm0vdk56t4tki4dur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
