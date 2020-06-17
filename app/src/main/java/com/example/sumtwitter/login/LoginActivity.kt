@@ -1,6 +1,8 @@
 package com.example.sumtwitter.login
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -14,10 +16,14 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var viewModel: LoginViewModel
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        sharedPreferences = getSharedPreferences(getString(R.string.app_name), Context.MODE_PRIVATE)
 
         observeViewModel()
 
@@ -35,14 +41,24 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.loginLiveData.observe(this, Observer {
             if (it) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+               viewModel.getToken()
                 return@Observer
             }
 
             login_loader.visibility = View.GONE
             login_button.isEnabled = true
             showText(this, "Não foi possível realizar o login")
+        })
+
+        viewModel.tokenLiveData.observe(this, Observer {
+            it?.let {
+            sharedPreferences.edit().putString(
+                "Token",
+                it.tokenType.capitalize().plus(" ").plus(it.accessToken)
+            ).apply()
+        }
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         })
     }
 }
