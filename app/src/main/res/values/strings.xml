@@ -4,8 +4,11 @@
 
     <string name="hello_list_fragment">Hello List Fragment</string>
     <string name="hello_map_fragment">Hello Map Fragment</string>
-    <string name="list_label">List</string>
-    <string name="map_label">Map</string>
+    <string name="timeline_label">Timeline</string>
+    <string name="profile_label">Profile</string>
     <string name="twitter_sign_in">Sign in with Twitter</string>
-    <string name="login_error">Não foi possível realizar o login</string>
+    <string name="login_error">Fail to login with Twitter account</string>
+    <string name="timeline_error">Fail to load tweets list</string>
+    <string name="profile_error">Fail to load profile</string>
+    <string name="user_since">User since: %s</string>
 </resources>

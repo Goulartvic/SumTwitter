@@ -16,9 +16,9 @@
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
-        android:name="com.example.sumtwitter.main.map.MapFragment"
+        android:name="com.example.sumtwitter.main.profile.ProfileFragment"
         android:label="fragment_map"
-        tools:layout="@layout/fragment_map" >
+        tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_mapFragment_to_listFragment2"
             app:destination="@id/listFragment" />

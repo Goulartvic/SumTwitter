@@ -18,4 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setupWithNavController(navController)
     }
+
+    fun setActionBar(title: String) {
+        supportActionBar?.title = title
+    }
 }
