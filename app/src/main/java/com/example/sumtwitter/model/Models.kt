@@ -20,7 +20,9 @@ data class Tweet(
 data class User(
     @JsonProperty(value = "name") val name: String,
     @JsonProperty(value = "screen_name") val screenName: String,
-    @JsonProperty(value = "profile_image_url_https") val profileImage: String
+    @JsonProperty(value = "profile_image_url_https") val profileImage: String,
+    @JsonProperty(value = "created_at") val createdAt: String,
+    @JsonProperty(value = "description") val description: String
 )
 
 data class Token(
