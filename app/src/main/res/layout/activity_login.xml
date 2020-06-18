@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <include
-        android:id="@+id/login_loader"
+        android:id="@+id/loader"
         layout="@layout/loader"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
