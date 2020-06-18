@@ -10,6 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.sumtwitter.R
 import com.example.sumtwitter.main.MainActivity
+import com.example.sumtwitter.utils.Constants.Companion.SCREEN_NAME
+import com.example.sumtwitter.utils.Constants.Companion.TOKEN
 import com.example.sumtwitter.utils.showText
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -31,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         login_button.setOnClickListener {
             viewModel.startLogin(this)
-            login_loader.visibility = View.VISIBLE
+            loader.visibility = View.VISIBLE
             login_button.isEnabled = false
         }
     }
@@ -39,26 +41,33 @@ class LoginActivity : AppCompatActivity() {
     private fun observeViewModel() {
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
 
-        viewModel.loginLiveData.observe(this, Observer {
-            if (it) {
-               viewModel.getToken()
-                return@Observer
+        viewModel.nameLiveData.observe(this, Observer {
+            it?.let {
+                sharedPreferences.edit().putString(SCREEN_NAME, it).apply()
             }
+            viewModel.getToken()
+        })
 
-            login_loader.visibility = View.GONE
-            login_button.isEnabled = true
-            showText(this, "Não foi possível realizar o login")
+        viewModel.loggedIn.observe(this, Observer {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         })
 
         viewModel.tokenLiveData.observe(this, Observer {
             it?.let {
-            sharedPreferences.edit().putString(
-                "Token",
-                it.tokenType.capitalize().plus(" ").plus(it.accessToken)
-            ).apply()
-        }
+            sharedPreferences
+                .edit()
+                .putString(TOKEN, it.tokenType.capitalize().plus(" ").plus(it.accessToken))
+                .apply()
+            }
             startActivity(Intent(this, MainActivity::class.java))
             finish()
+        })
+
+        viewModel.loginError.observe(this, Observer {
+            loader.visibility = View.GONE
+            login_button.isEnabled = true
+            showText(this, getString(R.string.login_error))
         })
     }
 }

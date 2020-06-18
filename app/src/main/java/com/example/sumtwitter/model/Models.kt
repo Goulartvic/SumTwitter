@@ -1,17 +1,29 @@
 package com.example.sumtwitter.model
 
-import com.squareup.moshi.Json
-import java.util.*
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonProperty
 
+data class Tweets (
+    val result: List<Tweet>
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 data class Tweet(
-    val name: String,
-    val screenName: String,
-    val text: String,
-    val createdAt: Date,
-    val profileImage: String
+    @JsonProperty(value = "user") val user: User,
+    @JsonProperty(value = "text") val text: String,
+    @JsonProperty(value = "created_at") val createdAt: String,
+    @JsonProperty(value = "retweet_count") val retweets: Long,
+    @JsonProperty(value = "favorite_count") val favorites: Long
+)
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class User(
+    @JsonProperty(value = "name") val name: String,
+    @JsonProperty(value = "screen_name") val screenName: String,
+    @JsonProperty(value = "profile_image_url_https") val profileImage: String
 )
 
 data class Token(
-    @Json(name = "token_type") val tokenType: String,
-    @Json(name = "access_token") val accessToken: String
+    @JsonProperty(value = "token_type") val tokenType: String,
+    @JsonProperty(value = "access_token") val accessToken: String
 )

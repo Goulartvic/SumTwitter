@@ -6,7 +6,7 @@ import com.example.sumtwitter.utils.Constants.Companion.API_BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.jackson.JacksonConverterFactory
 
 class BaseApplication : Application() {
 
@@ -19,7 +19,7 @@ class BaseApplication : Application() {
         apiInstance = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .client(OkHttpClient.Builder().build())
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(JacksonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(TwitterApi::class.java)

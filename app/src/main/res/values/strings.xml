@@ -7,4 +7,5 @@
     <string name="list_label">List</string>
     <string name="map_label">Map</string>
     <string name="twitter_sign_in">Sign in with Twitter</string>
+    <string name="login_error">Não foi possível realizar o login</string>
 </resources>

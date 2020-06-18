@@ -24,12 +24,14 @@ class LoginViewModel : BaseViewModel() {
     private var firebaseAuth = FirebaseAuth.getInstance()
     private var apiInstance = BaseApplication.apiInstance
 
-    var loginLiveData = MutableLiveData<Boolean>()
     var tokenLiveData = MutableLiveData<Token>()
+    var nameLiveData = MutableLiveData<String>()
+    var loggedIn = MutableLiveData<Boolean>()
+    var loginError = MutableLiveData<Boolean>()
 
     fun isLoggedIn() {
         if (firebaseAuth.currentUser != null) {
-            loginLiveData.postValue(true)
+            loggedIn.postValue(true)
         }
     }
 
@@ -46,9 +48,11 @@ class LoginViewModel : BaseViewModel() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe ({
-                    loginLiveData.postValue(true)
+                    it.additionalUserInfo?.let {
+                        nameLiveData.postValue(it.username)
+                    }
                 }, {
-                    loginLiveData.postValue(false)
+                    loginError.postValue(true)
                 })
         )
     }
@@ -65,7 +69,7 @@ class LoginViewModel : BaseViewModel() {
                 tokenLiveData.postValue(it)
             }, {
                 it.message?.let {
-                    Log.e("TOKEN_ERROR", it)
+                    loginError.postValue(true)
                 }
             })
     }

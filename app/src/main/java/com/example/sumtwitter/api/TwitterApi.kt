@@ -1,6 +1,7 @@
 package com.example.sumtwitter.api
 
 import com.example.sumtwitter.model.Token
+import com.example.sumtwitter.model.Tweet
 import com.example.sumtwitter.utils.Constants.Companion.GRANT_TYPE
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -19,7 +20,6 @@ interface TwitterApi {
     @GET("/1.1/statuses/user_timeline.json")
     fun getTweets(
         @Header("Authorization") auth: String,
-        @Query("user_id") id: Long,
-        @Query("count") count: Long = 10
-    ): Observable<Token>
+        @Query("screen_name") name: String
+    ): Observable<List<Tweet>>
 }
